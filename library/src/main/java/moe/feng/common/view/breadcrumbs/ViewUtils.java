@@ -3,6 +3,7 @@ package moe.feng.common.view.breadcrumbs;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.os.Build;
 import androidx.annotation.AttrRes;
 import androidx.annotation.ColorInt;
 import android.view.View;
@@ -19,7 +20,11 @@ class ViewUtils {
 	 * @return Result
 	 */
 	static boolean isRtlLayout(Context context) {
-		return context.getResources().getConfiguration().getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+			return context.getResources().getConfiguration().getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
+		} else {
+			return false;
+		}
 	}
 
 	/**
